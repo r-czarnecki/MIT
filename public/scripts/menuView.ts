@@ -83,8 +83,6 @@ interface Window {
   closePointersMenu.addEventListener("click", pointersMenuClose);
   pointersMenuCollapsed.addEventListener("click", pointersMenuOpen);
 
-  pointersMenuOpen();
-
   const pointersMap = new Map(Object.entries(pointers));
   let pointersGroupedByCategory = new Map();
   pointersMap.forEach((pointer, pointerName) => {
