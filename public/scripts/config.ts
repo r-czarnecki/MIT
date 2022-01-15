@@ -6,7 +6,25 @@ export const floors = {
     }
 }
 
-export const pointers = {
+export interface pointerInterface {
+    "id": string,
+    "x": number,
+    "y": number,
+    "floor": number,
+    "photo": string,
+    "details": {
+        [title: string]: string
+    }
+}
+
+interface pointersInterface {
+    [name: string]: {
+        "pointer_photo": string
+        "pointers": pointerInterface[]
+    }
+}
+
+export const pointers: pointersInterface = {
     "winda": {
         "pointer_photo": "images/elevator_pin.png",
         "pointers": [
@@ -24,7 +42,7 @@ export const pointers = {
         ]
     },
     "schody": {
-        "pointer_photo": "images/stairs_pin.jpg",
+        "pointer_photo": "images/stairs_pin.png",
         "pointers": [
             {
                 "id": "weuiruuh",
@@ -41,7 +59,7 @@ export const pointers = {
                 "x": 98.1,
                 "y": 60,
                 "floor": 1,
-                "photo": "images/stairs2",
+                "photo": "images/stairs2.png",
                 "details": {
                     "Materiał": "Kamień"
                 }
