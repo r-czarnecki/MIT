@@ -1,7 +1,7 @@
-import express from 'express'
+import express from "express";
 
 export const mapRouter = express.Router();
 
-mapRouter.get('/', (res, req) => {
-    req.render('mapView', {})
+mapRouter.get("/", (res, req) => {
+  req.render("mapView", {});
 });
