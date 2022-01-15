@@ -8,5 +8,25 @@ html
         link(rel="stylesheet", type="text/css", media="screen", href="stylesheets/menu.css")
     body
         div(class="container")
+            div(class="search")
+                div(class="search__bar")
+                    input(type="text", placeholder="nazwa pomieszczenia lub numer sali", class="search__input")
+                    button(type="button", class="search__button")
+                        | SZUKAJ
+            div(class="floors")
+                p PIETRO
+                div(class="floors_options", id="floors")
+                    button 1
+                    button 2
+                    button 3
+                    button 4
             iframe(src="/map", class="map")
+            div(class="pointers pointersCollapsed", onClick="pointersMenuOpen()", id="pointersMenuCollapsed")
+                p Pokaż znaczniki na mapie
+                img(src="/images/icons/arrow_up.png", class="pointers__arrow")
+            div(class="pointers pointersExpanded", id="pointersMenuExpanded")
+                div(class="pointersExpanded__header")
+                    p Pokaż znaczniki na mapie
+                    img(src="/images/icons/x.png", class="pointers__arrow", onClick="pointersMenuClose()")
+
         script(src="scripts/menuView.js")
