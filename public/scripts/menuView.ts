@@ -3,14 +3,17 @@ import { floors } from "./config.js";
 interface Window {
   test: any;
 }
-
-// INIT
-
-(() => {})();
-
-// FLOOR OPTIONS
-
 (() => {
+  const mapIFrame = document.querySelector("iframe").contentWindow as any;
+
+  // INIT
+
+  mapIFrame.onload = () => {
+    mapIFrame.showFloor(1);
+  };
+
+  // FLOOR OPTIONS
+
   const floorsOptions = document.getElementById("floorsOptions");
 
   const floorsMap = new Map(Object.entries(floors));
@@ -19,15 +22,13 @@ interface Window {
     FloorButton.innerHTML = floor;
     FloorButton.classList.add("floorButton");
     FloorButton.addEventListener("click", () => {
-      console.log("floor", floor);
+      mapIFrame.showFloor(parseInt(floor));
     });
     floorsOptions.appendChild(FloorButton);
   });
-})();
 
-// POINTERS MENU
+  // POINTERS MENU
 
-(() => {
   const pointersMenuExpanded = document.getElementById("pointersMenuExpanded");
   const pointersMenuCollapsed = document.getElementById(
     "pointersMenuCollapsed"
