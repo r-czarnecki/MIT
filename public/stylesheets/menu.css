@@ -131,3 +131,17 @@ body {
   align-items: center;
   width: auto;
 }
+
+.floorButton {
+  height: 24px;
+  width: 24px;
+  border: 1;
+  border-radius: 50%;
+  border-width: 2px;
+  border-color: rgb(24, 8, 92);
+  font-size: 0.85rem;
+  text-align: center;
+  justify-content: center;
+  color: black;
+  background-color: white;
+}
