@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "es6",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": false,
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "../node_modules/*"
+            ]
+        }
+    },
+    "include": [
+        "./**/*",
+        "decs.d.ts",
+        "*.ts",
+        "src/*.ts",
+        "routes/*.ts",
+        "public/scripts/*.ts"
+    ]
+}

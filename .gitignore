@@ -1,0 +1,4 @@
+**/*.js
+sessions
+node_modules
+package-lock.json
