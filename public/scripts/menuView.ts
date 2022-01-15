@@ -6,13 +6,32 @@ interface Window {
 (() => {
   const mapIFrame = document.querySelector("iframe").contentWindow as any;
 
+  // STATE
+  let state: {
+    currentFloor: number;
+  };
+
   // INIT
 
   mapIFrame.onload = () => {
-    mapIFrame.showFloor(1);
+    state = {
+      currentFloor: 1,
+    };
+    showFloor(state.currentFloor);
   };
 
   // FLOOR OPTIONS
+
+  const showFloor = (floor: number) => {
+    mapIFrame.showFloor(floor);
+    document
+      .getElementById(`floorButton-${state.currentFloor}`)
+      .classList.remove("floorButton__active");
+    document
+      .getElementById(`floorButton-${floor}`)
+      .classList.add("floorButton__active");
+    state.currentFloor = floor;
+  };
 
   const floorsOptions = document.getElementById("floorsOptions");
 
@@ -21,8 +40,9 @@ interface Window {
     let FloorButton = document.createElement("button");
     FloorButton.innerHTML = floor;
     FloorButton.classList.add("floorButton");
+    FloorButton.id = `floorButton-${floor}`;
     FloorButton.addEventListener("click", () => {
-      mapIFrame.showFloor(parseInt(floor));
+      showFloor(parseInt(floor));
     });
     floorsOptions.appendChild(FloorButton);
   });

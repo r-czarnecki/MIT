@@ -136,6 +136,7 @@ body {
   height: 24px;
   width: 24px;
   border: 1;
+  margin-left: 0.5rem;
   border-radius: 50%;
   border-width: 2px;
   border-color: rgb(24, 8, 92);
@@ -144,4 +145,9 @@ body {
   justify-content: center;
   color: black;
   background-color: white;
+}
+
+.floorButton__active {
+  background-color: rgb(24, 8, 92);
+  color: white;
 }
