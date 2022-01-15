@@ -68,11 +68,28 @@ export const pointers: pointersInterface = {
     }
 }
 
-export const rooms = {
+export interface roomInterface {
+    "id": string,
+    "x": number,
+    "y": number,
+    "floor": number,
+    "overlay_photo": string,
+    "width": number,
+    "height": number,
+    "photo": string,
+    "details": {
+        [title: string]: string
+    }
+}
+interface roomsInterface {
+    [roomName: string]: roomInterface
+}
+
+export const rooms: roomsInterface = {
     "Sala A": {
         "id": "weijriunkf",
-        "x": 20.7,
-        "y": 83.1,
+        "x": 20.75,
+        "y": 82.1,
         "floor": 1,
         "overlay_photo": "images/square.jpg",
         "width": 4.2,
