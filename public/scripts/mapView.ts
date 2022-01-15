@@ -40,4 +40,10 @@ function showPointers(pointerTypes: [string]) {
   }
 }
 
-(window as any).showPointers = showPointers
+function showRoom(id: string) {}
+
+function showFloor(floor: number) {}
+
+(window as any).showPointers = showPointers;
+(window as any).showRoom = showRoom;
+(window as any).showFloor = showFloor;
