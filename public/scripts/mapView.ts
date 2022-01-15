@@ -1,4 +1,4 @@
-import { floors, pointers, rooms, pointerInterface } from "./config.js";
+import { floors, pointers, rooms, pointerInterface, roomInterface } from "./config.js";
 
 interface Window {
   showDetails: any;
@@ -40,7 +40,42 @@ function showPointers(pointerTypes: [string]) {
   }
 }
 
-function showRoom(id: string) {}
+function showRoom(id: string) {
+  const roomElement = document.querySelector("#room") as HTMLDivElement
+  const roomImgElement = document.querySelector("#room img") as HTMLImageElement
+  const roomPElement = document.querySelector("#room p") as HTMLParagraphElement
+  roomImgElement.innerHTML = "";
+  roomImgElement.src = "";
+  roomImgElement.style.display = "none";
+  roomPElement.innerText = "";
+
+  let foundRoom : roomInterface = null;
+  let foundRoomName : string = null;
+  for (const roomName in rooms) {
+    const room = rooms[roomName]
+    if (room.floor === currentFloor && room.id === id) {
+      foundRoom = room;
+      foundRoomName = roomName;
+      break;
+    }
+  }
+
+  if (foundRoom === null) {
+    return;
+  }
+
+  roomImgElement.style.display = "initial";
+  roomImgElement.src = foundRoom.overlay_photo;
+  roomElement.style.width = foundRoom.width.toString() + "%";
+  roomElement.style.height = foundRoom.height.toString() + "%";
+  roomElement.style.left = foundRoom.x.toString() + "%";
+  roomElement.style.top = foundRoom.y.toString() + "%";
+  roomPElement.innerText = foundRoomName;
+
+  roomElement.onclick = (ev: MouseEvent) => {
+    (parent as any).showDetails(foundRoom.id);
+  }
+}
 
 function showFloor(floor: number) {}
 
