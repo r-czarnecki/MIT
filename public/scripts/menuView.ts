@@ -1,4 +1,4 @@
-import { floors } from "./config.js";
+import { floors, pointers } from "./config.js";
 
 interface Window {
   test: any;
@@ -9,6 +9,7 @@ interface Window {
   // STATE
   let state: {
     currentFloor: number;
+    shownPointers: string[];
   };
 
   // INIT
@@ -16,6 +17,7 @@ interface Window {
   mapIFrame.onload = () => {
     state = {
       currentFloor: 1,
+      shownPointers: [],
     };
     showFloor(state.currentFloor);
   };
@@ -49,6 +51,19 @@ interface Window {
 
   // POINTERS MENU
 
+  const showPointer = (pointerName: string, pointerCheckboxNode: any) => {
+    if (state.shownPointers.includes(pointerName)) {
+      state.shownPointers = state.shownPointers.filter(
+        (shownPointer) => shownPointer !== pointerName
+      );
+      pointerCheckboxNode.src = "../images/icons/checkbox_false.png";
+    } else {
+      state.shownPointers.push(pointerName);
+      pointerCheckboxNode.src = "../images/icons/checkbox_true.png";
+    }
+    mapIFrame.showPointers(state.shownPointers);
+  };
+
   const pointersMenuExpanded = document.getElementById("pointersMenuExpanded");
   const pointersMenuCollapsed = document.getElementById(
     "pointersMenuCollapsed"
@@ -67,4 +82,44 @@ interface Window {
 
   closePointersMenu.addEventListener("click", pointersMenuClose);
   pointersMenuCollapsed.addEventListener("click", pointersMenuOpen);
+
+  const pointersMap = new Map(Object.entries(pointers));
+  let pointersGroupedByCategory = new Map();
+  pointersMap.forEach((pointer, pointerName) => {
+    let category = pointer.category;
+    if (!pointersGroupedByCategory.has(category)) {
+      pointersGroupedByCategory.set(category, []);
+    }
+    pointersGroupedByCategory.get(category).push(pointerName);
+  });
+
+  const pointersOptions = document.getElementById("pointersMenuExpanded");
+  pointersGroupedByCategory.forEach((pointers, category) => {
+    let categoryNode = document.createElement("div");
+    categoryNode.classList.add("pointersOptions__category");
+    let categoryHeaderNode = document.createElement("div");
+    categoryHeaderNode.classList.add("pointersOptions__category__header");
+    categoryHeaderNode.innerHTML = category;
+    categoryNode.appendChild(categoryHeaderNode);
+    let categoryOptionsNode = document.createElement("div");
+    categoryOptionsNode.classList.add("pointersOptions__category__options");
+    pointers.forEach((pointerName: string) => {
+      let pointerNode = document.createElement("div");
+      pointerNode.classList.add("pointersOptions__category__option");
+      let pointerCheckboxNode = document.createElement("img");
+      pointerCheckboxNode.src = "../images/icons/checkbox_false.png";
+      pointerCheckboxNode.classList.add("checkbox");
+      pointerNode.appendChild(pointerCheckboxNode);
+      let pointerNameNode = document.createElement("p");
+      pointerNameNode.innerHTML = pointerName;
+      pointerNode.appendChild(pointerNameNode);
+      pointerNode.addEventListener("click", () => {
+        showPointer(pointerName, pointerCheckboxNode);
+      });
+
+      categoryOptionsNode.appendChild(pointerNode);
+    });
+    categoryNode.appendChild(categoryOptionsNode);
+    pointersOptions.appendChild(categoryNode);
+  });
 })();

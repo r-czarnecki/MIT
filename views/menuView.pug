@@ -14,7 +14,7 @@ html
                     button(type="button", class="search__button")
                         | SZUKAJ
             div(class="floors")
-                p PIETRO
+                p PIĘTRO
                 div(class="floors_options", id="floorsOptions")
             iframe(src="/map", class="map")
             div(class="pointers pointersCollapsed", id="pointersMenuCollapsed")
@@ -24,5 +24,9 @@ html
                 div(class="pointersExpanded__header")
                     p Pokaż znaczniki na mapie
                     img(src="/images/icons/x.png", class="pointers__arrow", id="closePointersMenu")
+                div(class="pointersPropose")
+                    p Nie mamy tego, czego szukasz?
+                    p(class="pointersPropose__cta")
+                        | Zaproponuj nowy znacznik
 
         script(src="scripts/menuView.js", type="module")
