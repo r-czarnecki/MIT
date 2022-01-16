@@ -1,4 +1,4 @@
-import { floors, pointers } from "./config.js";
+import { floors, pointers, rooms } from "./config.js";
 
 interface Window {
   test: any;
@@ -10,6 +10,7 @@ interface Window {
   let state: {
     currentFloor: number;
     shownPointers: string[];
+    searchValue: string;
   };
 
   // INIT
@@ -18,6 +19,7 @@ interface Window {
     state = {
       currentFloor: 1,
       shownPointers: [],
+      searchValue: "",
     };
     showFloor(state.currentFloor);
   };
@@ -121,5 +123,56 @@ interface Window {
     });
     categoryNode.appendChild(categoryOptionsNode);
     pointersOptions.appendChild(categoryNode);
+  });
+
+  // ROOMS
+
+  const searchInput = document.getElementById(
+    "searchInput"
+  ) as HTMLInputElement;
+  const searchButton = document.getElementById("searchButton");
+  const searchDropdown = document.getElementById("searchDropdown");
+  const menuNode = document.getElementById("menu");
+  // detect focus
+  document.addEventListener("click", (e) => {
+    if (e.target == searchInput || e.target == searchDropdown) {
+      searchDropdown.style.display = "block";
+    } else {
+      searchDropdown.style.display = "none";
+    }
+  });
+
+  searchInput.addEventListener("input", (e: any) => {
+    let searchValue = e.target.value;
+    state.searchValue = searchValue;
+    let searchDropdownItems = document.querySelectorAll(
+      ".search__dropdown_item"
+    );
+    searchDropdownItems.forEach((item: HTMLElement) => {
+      if (item.innerHTML.includes(searchValue)) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  });
+
+  const roomsMap = new Map(Object.entries(rooms));
+  roomsMap.forEach((room, roomName) => {
+    let roomOption = document.createElement("div");
+    roomOption.classList.add("search__dropdown_item");
+    roomOption.innerHTML = roomName;
+    roomOption.addEventListener("click", () => {
+      searchInput.value = roomName;
+
+      searchDropdown.style.display = "none";
+      mapIFrame.showRoom(roomName);
+    });
+    searchDropdown.appendChild(roomOption);
+  });
+
+  searchButton.addEventListener("click", () => {
+    const searchValue = searchInput.value;
+    mapIFrame.showRoom(searchValue);
   });
 })();

@@ -7,12 +7,13 @@ html
         meta(name="viewport", content="width=device-width, initial-scale=1")
         link(rel="stylesheet", type="text/css", media="screen", href="stylesheets/menu.css")
     body
-        div(class="container")
-            div(class="search")
+        div(class="container", id="menuNode")
+            div(class="search", id="searchNode")
                 div(class="search__bar")
-                    input(type="text", placeholder="nazwa pomieszczenia lub numer sali", class="search__input")
-                    button(type="button", class="search__button")
+                    input(type="text", placeholder="nazwa pomieszczenia lub numer sali", class="search__input", id="searchInput")
+                    button(type="button", class="search__button", id="searchButton")
                         | SZUKAJ
+                div(class="search__dropdown", id="searchDropdown")
             div(class="floors")
                 p PIĘTRO
                 div(class="floors_options", id="floorsOptions")

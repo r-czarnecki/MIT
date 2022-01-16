@@ -6,7 +6,7 @@ interface floorsInterface {
     }
 }
 
-export const floors = {
+export const floors : floorsInterface = {
   "1": {
     photo: "images/floor1.jpg",
     width: 50,
