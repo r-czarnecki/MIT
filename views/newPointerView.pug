@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        title="test"
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", type="text/css", media="screen", href="stylesheets/changeForm.css")
+    body
+        div
+            img(id="back_arrow", src="images/icons/back_arrow.png", onclick="location.href='/menu'")
+            h1="Zgłoś zapotrzebowanie na znacznik"
+            p="Nazwa znacznika"
+            input
+            p="Czemu potrzebujesz takiego znacznika?"
+            textarea
+            button(onclick="location.href='/changeFormSuccessful'")="Zgłoś"
+        script(type="module", src="scripts/changeForm.js")
