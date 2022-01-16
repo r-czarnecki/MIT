@@ -185,4 +185,66 @@ interface Window {
     const searchValue = searchInput.value;
     showRoom(searchValue);
   });
+
+  // DETAILS
+
+  const details = document.getElementById("details");
+  const closeDetails = document.getElementById("closeDetails");
+  closeDetails.addEventListener("click", () => {
+    details.style.display = "none";
+  });
 })();
+
+// DETAILS
+
+const fillDetails = (details: { [title: string]: string }) => {
+  const detailsContentNode = document.getElementById("detailsContent");
+  detailsContentNode.innerHTML = "";
+  const detailsMap = new Map(Object.entries(details));
+  detailsMap.forEach((value, title) => {
+    let detailNode = document.createElement("div");
+    detailNode.classList.add("details__content__info");
+    let detailTitleNode = document.createElement("div");
+    detailTitleNode.classList.add("details__content__info__title");
+    detailTitleNode.innerHTML = title;
+    detailNode.appendChild(detailTitleNode);
+    let detailValueNode = document.createElement("div");
+    detailValueNode.classList.add("details__content__info__description");
+    detailValueNode.innerHTML = value;
+    detailNode.appendChild(detailValueNode);
+    detailsContentNode.appendChild(detailNode);
+  });
+};
+
+const showDetails = (id: string) => {
+  const details = document.getElementById("details");
+  const detailsTitle = document.getElementById("detailsTitle");
+  const detailsContent = document.getElementById("detailsContent");
+  const detailsImage = document.getElementById(
+    "detailsImage"
+  ) as HTMLImageElement;
+
+  const roomsMap = new Map(Object.entries(rooms));
+  roomsMap.forEach((room, roomName) => {
+    if (room.id == id) {
+      detailsTitle.innerHTML = roomName;
+      detailsImage.src = room.photo;
+      fillDetails(room.details);
+    }
+  });
+
+  const pointersMap = new Map(Object.entries(pointers));
+  pointersMap.forEach(({ pointers }, pointerName) => {
+    pointers.forEach((pointer) => {
+      if (pointer.id == id) {
+        detailsTitle.innerHTML = pointerName;
+        detailsImage.src = pointer.photo;
+        fillDetails(pointer.details);
+      }
+    });
+  });
+
+  details.style.display = "block";
+};
+
+(window as any).showDetails = showDetails;
