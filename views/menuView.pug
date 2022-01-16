@@ -14,19 +14,19 @@ html
                     button(type="button", class="search__button")
                         | SZUKAJ
             div(class="floors")
-                p PIETRO
-                div(class="floors_options", id="floors")
-                    button 1
-                    button 2
-                    button 3
-                    button 4
+                p PIĘTRO
+                div(class="floors_options", id="floorsOptions")
             iframe(src="/map", class="map")
-            div(class="pointers pointersCollapsed", onClick="pointersMenuOpen()", id="pointersMenuCollapsed")
+            div(class="pointers pointersCollapsed", id="pointersMenuCollapsed")
                 p Pokaż znaczniki na mapie
                 img(src="/images/icons/arrow_up.png", class="pointers__arrow")
             div(class="pointers pointersExpanded", id="pointersMenuExpanded")
                 div(class="pointersExpanded__header")
                     p Pokaż znaczniki na mapie
-                    img(src="/images/icons/x.png", class="pointers__arrow", onClick="pointersMenuClose()")
+                    img(src="/images/icons/x.png", class="pointers__arrow", id="closePointersMenu")
+                div(class="pointersPropose")
+                    p Nie mamy tego, czego szukasz?
+                    p(class="pointersPropose__cta")
+                        | Zaproponuj nowy znacznik
 
-        script(src="scripts/menuView.js")
+        script(src="scripts/menuView.js", type="module")
