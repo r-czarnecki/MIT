@@ -12,6 +12,11 @@ export const floors : floorsInterface = {
     width: 100,
     height: 100,
   },
+  "2": {
+      photo: "images/floor2.jpg",
+      width: 75,
+      height: 75
+  }
 };
 
 export interface pointerInterface {
@@ -51,6 +56,18 @@ export const pointers: pointersInterface = {
             "W windzie mieści się wózek elektryczny (szerokość 110 cm). Winda ma informację głosową.",
         },
       },
+      {
+        id: "uwerunvdx",
+        x: 4.29,
+        y: 85.9,
+        floor: 2,
+        photo: "images/elevator.jpg",
+        details: {
+          Tytuł1: "Opis1",
+          Tytuł2: "Opis2",
+          Tytuł3: "Opis3",
+        },
+      },
     ],
   },
   schody: {
@@ -76,6 +93,18 @@ export const pointers: pointersInterface = {
         photo: "images/stairs2.png",
         details: {
           Materiał: "Kamień",
+        },
+      },
+      {
+        id: "pmvbvcgffd",
+        x: 19.97,
+        y: 40.51,
+        floor: 2,
+        photo: "images/stairs2.png",
+        details: {
+          Tytuł1: "Opis1",
+          Tytuł2: "Opis2",
+          Tytuł3: "Opis3",
         },
       },
     ],
@@ -133,4 +162,48 @@ export const rooms: roomsInterface = {
       Tytuł2: "Opis2",
     },
   },
+  "Sala B": {
+      id: "tczmnabd",
+      x: 85.79,
+      y: 74.84,
+      floor: 2,
+      overlay_photo: "images/square.jpg",
+      width: 10.06,
+      height: 20.19,
+      photo: "images/salaA.jpg",
+      details: {
+        Tytuł1: "Opis1",
+        Tytuł2: "Opis2",
+        Tytuł3: "Opis3",
+      }
+  },
+  "Sala C": {
+      id: "ieowoiquwe",
+      x: 73.63,
+      y: 12.34,
+      floor: 2,
+      overlay_photo: "images/square.jpg",
+      width: 17.51,
+      height: 24.84,
+      photo: "images/salaA.jpg",
+      details: {
+        Tytuł1: "Opis1",
+        Tytuł2: "Opis2",
+        Tytuł3: "Opis3",
+      }
+  },
+  "Łazienka 2. piętro": {
+      id: "lxcvnsbfsd",
+      x: 61.15,
+      y: 69.09,
+      floor: 2,
+      overlay_photo: "images/lazienka2p_shape.png",
+      width: 15.66,
+      height: 14.26,
+      photo: "images/lazienka1p.jpg",
+      details: {
+        Tytuł1: "Opis1",
+        Tytuł2: "Opis2",
+      },
+  }
 };

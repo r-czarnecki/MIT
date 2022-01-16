@@ -5,7 +5,7 @@ interface Window {
 }
 
 let currentFloor: Number = null;
-let lastPointers : string[] = []
+let lastPointers: string[] = []
 
 function clearPointers() {
   const pointersDiv = document.querySelector("#pointers");
@@ -21,7 +21,7 @@ function clearRoom() {
   roomPElement.innerText = "";
 }
 
-function showPointers(pointerTypes: [string]) {
+function showPointers(pointerTypes: string[]) {
   const pointersDiv = document.querySelector("#pointers");
   clearPointers();
 
@@ -111,6 +111,8 @@ function showFloor(floor: number) {
   floorElement.src = floorInfo.photo;
   // mainDiv.style.height = floorInfo.height + "%";
   mainDiv.style.width = floorInfo.width + "%";
+
+  showPointers(lastPointers);
 }
 
 (window as any).showPointers = showPointers;
