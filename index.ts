@@ -8,6 +8,7 @@ import { menuRouter } from "./routes/menuRouter.js";
 import { mapRouter } from "./routes/mapRouter.js";
 import { changeFormRouter } from "./routes/changeFormRouter.js";
 import { changeFormSuccessfulRouter } from "./routes/changeFormSuccessfulRouter.js";
+import { newPointerRouter } from "./routes/newPointerRouter.js";
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use("/menu", menuRouter);
 app.use("/map", mapRouter);
 app.use("/changeForm", changeFormRouter);
 app.use("/changeFormSuccessful", changeFormSuccessfulRouter);
+app.use("/newPointer", newPointerRouter);
 
 app.listen(3000, () => {
   console.log(
