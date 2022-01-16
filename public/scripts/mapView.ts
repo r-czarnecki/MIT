@@ -4,12 +4,28 @@ interface Window {
   showDetails: any;
 }
 
-let currentFloor: Number = 1;
+let currentFloor: Number = null;
+let lastPointers : string[] = []
+
+function clearPointers() {
+  const pointersDiv = document.querySelector("#pointers");
+  pointersDiv.innerHTML = "";
+}
+
+function clearRoom() {
+  const roomImgElement = document.querySelector("#room img") as HTMLImageElement
+  const roomPElement = document.querySelector("#room p") as HTMLParagraphElement
+  roomImgElement.innerHTML = "";
+  roomImgElement.src = "";
+  roomImgElement.style.display = "none";
+  roomPElement.innerText = "";
+}
 
 function showPointers(pointerTypes: [string]) {
   const pointersDiv = document.querySelector("#pointers");
-  pointersDiv.innerHTML = "";
+  clearPointers();
 
+  lastPointers = pointerTypes;
   if (currentFloor === null) {
     return;
   }
@@ -44,10 +60,11 @@ function showRoom(id: string) {
   const roomElement = document.querySelector("#room") as HTMLDivElement
   const roomImgElement = document.querySelector("#room img") as HTMLImageElement
   const roomPElement = document.querySelector("#room p") as HTMLParagraphElement
-  roomImgElement.innerHTML = "";
-  roomImgElement.src = "";
-  roomImgElement.style.display = "none";
-  roomPElement.innerText = "";
+  clearRoom();
+
+  if (currentFloor === null) {
+    return;
+  }
 
   let foundRoom : roomInterface = null;
   let foundRoomName : string = null;
@@ -72,12 +89,27 @@ function showRoom(id: string) {
   roomElement.style.top = foundRoom.y.toString() + "%";
   roomPElement.innerText = foundRoomName;
 
+  const floor = floors[foundRoom.floor.toString()]
+  roomPElement.style.fontSize = Math.min(floor.height, floor.width).toString() + "%";
+
   roomElement.onclick = (ev: MouseEvent) => {
     (parent as any).showDetails(foundRoom.id);
   }
 }
 
-function showFloor(floor: number) {}
+function showFloor(floor: number) {
+  clearPointers();
+  clearRoom();
+
+  currentFloor = floor;
+  const mainDiv = document.querySelector("body > div") as HTMLDivElement;
+  const floorElement = document.querySelector("#floor") as HTMLImageElement;
+  const floorInfo = floors[floor.toString()];
+
+  floorElement.src = floorInfo.photo;
+  // mainDiv.style.height = floorInfo.height + "%";
+  mainDiv.style.width = floorInfo.width + "%";
+}
 
 (window as any).showPointers = showPointers;
 (window as any).showRoom = showRoom;
