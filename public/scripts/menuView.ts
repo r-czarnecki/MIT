@@ -127,7 +127,9 @@ interface Window {
 
   // ROOMS
 
-  const searchInput = document.getElementById("searchInput");
+  const searchInput = document.getElementById(
+    "searchInput"
+  ) as HTMLInputElement;
   const searchButton = document.getElementById("searchButton");
   const searchDropdown = document.getElementById("searchDropdown");
   const menuNode = document.getElementById("menu");
@@ -140,13 +142,13 @@ interface Window {
     }
   });
 
-  searchInput.addEventListener("input", (e) => {
+  searchInput.addEventListener("input", (e: any) => {
     let searchValue = e.target.value;
     state.searchValue = searchValue;
     let searchDropdownItems = document.querySelectorAll(
       ".search__dropdown_item"
     );
-    searchDropdownItems.forEach((item) => {
+    searchDropdownItems.forEach((item: HTMLElement) => {
       if (item.innerHTML.includes(searchValue)) {
         item.style.display = "block";
       } else {
