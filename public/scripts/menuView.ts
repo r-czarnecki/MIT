@@ -166,6 +166,7 @@ interface Window {
 
   const showRoom = (roomName: string) => {
     const roomToFind = roomsMap.get(roomName);
+    showFloor(roomToFind.floor);
     mapIFrame.showRoom(roomToFind.id);
   };
 
