@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser";
 import { introRouter } from "./routes/introRouter.js";
 import { menuRouter } from "./routes/menuRouter.js";
 import { mapRouter } from "./routes/mapRouter.js";
+import { changeFormRouter } from "./routes/changeFormRouter.js";
+import { changeFormSuccessfulRouter } from "./routes/changeFormSuccessfulRouter.js";
 
 const app = express();
 
@@ -32,6 +34,8 @@ app.set("view engine", "pug");
 app.use("/", introRouter);
 app.use("/menu", menuRouter);
 app.use("/map", mapRouter);
+app.use("/changeForm", changeFormRouter);
+app.use("/changeFormSuccessful", changeFormSuccessfulRouter);
 
 app.listen(3000, () => {
   console.log(

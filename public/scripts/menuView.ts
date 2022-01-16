@@ -176,3 +176,8 @@ interface Window {
     mapIFrame.showRoom(searchValue);
   });
 })();
+
+function showDetails(id: string) {
+  console.log(id);
+}
+(window as any).showDetails = showDetails;

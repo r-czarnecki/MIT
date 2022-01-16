@@ -1,0 +1,22 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        title="test"
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", type="text/css", media="screen", href="stylesheets/changeForm.css")
+    body
+        div
+            img(id="back_arrow", src="images/icons/back_arrow.png", onclick="location.href='/menu'")
+            h1="Zgłoś błąd"
+            h2="czego dotyczy błąd?"
+            div(id="error_types")
+                each error_type in ["nazwy miejsca", "położenia miejsca", "opisu", "zdjęcia", "czegoś innego"]
+                    div
+                        img(src="images/icons/circle_not_selected.png")
+                        p=error_type
+            h2="Opisz na czym polega błąd"
+            textarea
+            button(onclick="location.href='/changeFormSuccessful'")="Zgłoś"
+        script(type="module", src="scripts/changeForm.js")
