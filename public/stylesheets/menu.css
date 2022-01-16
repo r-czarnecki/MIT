@@ -340,3 +340,22 @@ body {
   color: rgb(86, 86, 86);
   font-size: 1rem;
 }
+
+.details__footer {
+  width: 90%;
+  padding-left: 5%;
+  padding-right: 5%;
+  position: absolute;
+  bottom: 1rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.details__footer__cta {
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(24, 8, 92);
+}
