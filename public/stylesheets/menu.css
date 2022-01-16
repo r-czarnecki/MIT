@@ -172,7 +172,7 @@ body {
 
 .search__input {
   height: 32px;
-  width: 80%;
+  width: 75%;
   border: 1;
   border-width: 1px;
   border-radius: 0;
@@ -184,7 +184,7 @@ body {
 
 .search__button {
   height: 32px;
-  width: 20%;
+  width: 25%;
   border: 1;
   border-width: 1px;
 

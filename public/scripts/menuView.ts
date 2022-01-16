@@ -4,6 +4,9 @@ interface Window {
   test: any;
 }
 (() => {
+  const menuNode = document.getElementById("menuNode");
+  menuNode.style.height = window.innerHeight + "px";
+
   const mapIFrame = document.querySelector("iframe").contentWindow as any;
 
   // STATE
@@ -132,7 +135,7 @@ interface Window {
   ) as HTMLInputElement;
   const searchButton = document.getElementById("searchButton");
   const searchDropdown = document.getElementById("searchDropdown");
-  const menuNode = document.getElementById("menu");
+
   // detect focus
   document.addEventListener("click", (e) => {
     if (e.target == searchInput || e.target == searchDropdown) {
@@ -191,6 +194,8 @@ interface Window {
   const details = document.getElementById("details");
   const closeDetails = document.getElementById("closeDetails");
   closeDetails.addEventListener("click", () => {
+    pointersMenuCollapsed.style.display = "flex";
+
     details.style.display = "none";
   });
 })();
@@ -217,6 +222,11 @@ const fillDetails = (details: { [title: string]: string }) => {
 };
 
 const showDetails = (id: string) => {
+  const pointersMenuCollapsed = document.getElementById(
+    "pointersMenuCollapsed"
+  );
+  pointersMenuCollapsed.style.display = "none";
+
   const details = document.getElementById("details");
   const detailsTitle = document.getElementById("detailsTitle");
   const detailsContent = document.getElementById("detailsContent");
