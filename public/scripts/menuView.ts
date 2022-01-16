@@ -171,6 +171,9 @@ interface Window {
 
   searchButton.addEventListener("click", () => {
     const searchValue = searchInput.value;
-    mapIFrame.showRoom(searchValue);
+    const roomToFind = roomsMap.get(searchValue);
+    if (roomToFind) {
+      mapIFrame.showRoom(roomToFind.id);
+    }
   });
 })();

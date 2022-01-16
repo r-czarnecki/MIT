@@ -1,16 +1,16 @@
 interface floorsInterface {
-    [floor: string]: {
-        "photo": string,
-        "width": number,
-        "height": number
-    }
+  [floor: string]: {
+    photo: string;
+    width: number;
+    height: number;
+  };
 }
 
-export const floors : floorsInterface = {
+export const floors: floorsInterface = {
   "1": {
     photo: "images/floor1.jpg",
-    width: 50,
-    height: 50,
+    width: 100,
+    height: 100,
   },
 };
 
