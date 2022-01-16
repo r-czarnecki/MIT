@@ -143,6 +143,8 @@ interface Window {
   });
 
   searchInput.addEventListener("input", (e: any) => {
+    console.log(e.target.value);
+
     let searchValue = e.target.value;
     state.searchValue = searchValue;
     let searchDropdownItems = document.querySelectorAll(
@@ -158,6 +160,12 @@ interface Window {
   });
 
   const roomsMap = new Map(Object.entries(rooms));
+
+  const showRoom = (roomName: string) => {
+    const roomToFind = roomsMap.get(roomName);
+    mapIFrame.showRoom(roomToFind.id);
+  };
+
   roomsMap.forEach((room, roomName) => {
     let roomOption = document.createElement("div");
     roomOption.classList.add("search__dropdown_item");
@@ -166,18 +174,77 @@ interface Window {
       searchInput.value = roomName;
 
       searchDropdown.style.display = "none";
-      mapIFrame.showRoom(roomName);
+      showRoom(roomName);
     });
     searchDropdown.appendChild(roomOption);
   });
 
   searchButton.addEventListener("click", () => {
+    console.log(state.searchValue);
+
     const searchValue = searchInput.value;
-    mapIFrame.showRoom(searchValue);
+    showRoom(searchValue);
+  });
+
+  // DETAILS
+
+  const details = document.getElementById("details");
+  const closeDetails = document.getElementById("closeDetails");
+  closeDetails.addEventListener("click", () => {
+    details.style.display = "none";
   });
 })();
 
-function showDetails(id: string) {
-  console.log(id);
-}
+// DETAILS
+
+const fillDetails = (details: { [title: string]: string }) => {
+  const detailsContentNode = document.getElementById("detailsContent");
+  detailsContentNode.innerHTML = "";
+  const detailsMap = new Map(Object.entries(details));
+  detailsMap.forEach((value, title) => {
+    let detailNode = document.createElement("div");
+    detailNode.classList.add("details__content__info");
+    let detailTitleNode = document.createElement("div");
+    detailTitleNode.classList.add("details__content__info__title");
+    detailTitleNode.innerHTML = title;
+    detailNode.appendChild(detailTitleNode);
+    let detailValueNode = document.createElement("div");
+    detailValueNode.classList.add("details__content__info__description");
+    detailValueNode.innerHTML = value;
+    detailNode.appendChild(detailValueNode);
+    detailsContentNode.appendChild(detailNode);
+  });
+};
+
+const showDetails = (id: string) => {
+  const details = document.getElementById("details");
+  const detailsTitle = document.getElementById("detailsTitle");
+  const detailsContent = document.getElementById("detailsContent");
+  const detailsImage = document.getElementById(
+    "detailsImage"
+  ) as HTMLImageElement;
+
+  const roomsMap = new Map(Object.entries(rooms));
+  roomsMap.forEach((room, roomName) => {
+    if (room.id == id) {
+      detailsTitle.innerHTML = roomName;
+      detailsImage.src = room.photo;
+      fillDetails(room.details);
+    }
+  });
+
+  const pointersMap = new Map(Object.entries(pointers));
+  pointersMap.forEach(({ pointers }, pointerName) => {
+    pointers.forEach((pointer) => {
+      if (pointer.id == id) {
+        detailsTitle.innerHTML = pointerName;
+        detailsImage.src = pointer.photo;
+        fillDetails(pointer.details);
+      }
+    });
+  });
+
+  details.style.display = "block";
+};
+
 (window as any).showDetails = showDetails;
