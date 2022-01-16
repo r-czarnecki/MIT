@@ -143,6 +143,8 @@ interface Window {
   });
 
   searchInput.addEventListener("input", (e: any) => {
+    console.log(e.target.value);
+
     let searchValue = e.target.value;
     state.searchValue = searchValue;
     let searchDropdownItems = document.querySelectorAll(
@@ -158,6 +160,12 @@ interface Window {
   });
 
   const roomsMap = new Map(Object.entries(rooms));
+
+  const showRoom = (roomName: string) => {
+    const roomToFind = roomsMap.get(roomName);
+    mapIFrame.showRoom(roomToFind.id);
+  };
+
   roomsMap.forEach((room, roomName) => {
     let roomOption = document.createElement("div");
     roomOption.classList.add("search__dropdown_item");
@@ -166,13 +174,15 @@ interface Window {
       searchInput.value = roomName;
 
       searchDropdown.style.display = "none";
-      mapIFrame.showRoom(roomName);
+      showRoom(roomName);
     });
     searchDropdown.appendChild(roomOption);
   });
 
   searchButton.addEventListener("click", () => {
+    console.log(state.searchValue);
+
     const searchValue = searchInput.value;
-    mapIFrame.showRoom(searchValue);
+    showRoom(searchValue);
   });
 })();
