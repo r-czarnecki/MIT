@@ -1,8 +1,16 @@
-export const floors = {
+interface floorsInterface {
+    [floor: string]: {
+        "photo": string,
+        "width": number,
+        "height": number
+    }
+}
+
+export const floors : floorsInterface = {
     "1": {
         "photo": "images/floor1.jpg",
-        "width": 100,
-        "height": 100 
+        "width": 50,
+        "height": 50 
     }
 }
 
@@ -89,7 +97,7 @@ export const rooms: roomsInterface = {
     "Sala A": {
         "id": "weijriunkf",
         "x": 20.75,
-        "y": 82.1,
+        "y": 83.1,
         "floor": 1,
         "overlay_photo": "images/square.jpg",
         "width": 4.2,
@@ -104,11 +112,11 @@ export const rooms: roomsInterface = {
     },
     "Łazienka 1. piętro": {
         "id": "iewruuiwt",
-        "x": 87.8,
-        "y": 52.8,
+        "x": 87.7,
+        "y": 52,
         "floor": 1,
         "overlay_photo": "images/lazienka1p_shape.png",
-        "width": 5.1,
+        "width": 5.2,
         "height": 26,
         "photo": "images/lazienka1p.jpg",
         "details": {
