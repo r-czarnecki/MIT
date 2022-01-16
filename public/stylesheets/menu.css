@@ -322,6 +322,8 @@ body {
   flex-direction: column;
   justify-content: start;
   align-items: left;
+
+  padding-bottom: 2rem;
 }
 
 .details__content__info {
@@ -339,4 +341,27 @@ body {
   font-weight: normal;
   color: rgb(86, 86, 86);
   font-size: 1rem;
+}
+
+.details__footer {
+  width: 90%;
+  padding-left: 5%;
+  padding-right: 5%;
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+
+  background-color: white;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.details__footer__cta {
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(24, 8, 92);
 }
