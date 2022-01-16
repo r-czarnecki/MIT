@@ -95,6 +95,8 @@ function showRoom(id: string) {
   roomElement.onclick = (ev: MouseEvent) => {
     (parent as any).showDetails(foundRoom.id);
   }
+
+  roomElement.scrollIntoView();
 }
 
 function showFloor(floor: number) {
