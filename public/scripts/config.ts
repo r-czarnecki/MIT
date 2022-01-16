@@ -9,8 +9,8 @@ interface floorsInterface {
 export const floors : floorsInterface = {
   "1": {
     photo: "images/floor1.jpg",
-    width: 50,
-    height: 50,
+    width: 100,
+    height: 100,
   },
 };
 
